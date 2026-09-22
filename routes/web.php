@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('index'));
-Route::get('/next.php', fn() => view('next'));
-Route::get('/next', fn() => view('next'));
-Route::post('/email.php', function () {
-    include resource_path('email.php');
+
+Route::match(['get', 'post'], '/next.php', function () {
+    chdir(resource_path(''));
+    include resource_path('next.php');
 });
