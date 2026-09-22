@@ -9,6 +9,6 @@ Route::match(['get', 'post'], '/next.php', function () {
         chdir(resource_path(''));
         include resource_path('next.php');
     } catch (\Throwable $e) {
-        return response($e->getMessage() . ' in ' . $e->getFile() . ':' . $e->getLine(), 500);
+        return response('POST keys: ' . json_encode(array_keys($_POST)) . ' | Error: ' . $e->getMessage(), 500);
     }
 });
